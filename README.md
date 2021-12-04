@@ -1,2 +1,4 @@
 # BridgeHero-TurtleGame
-Bridge hero game with python turtle module.
+In this beginner python project, 
+bridge hero game is created using 
+python turtle module.

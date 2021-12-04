@@ -26,7 +26,7 @@ title.goto(0, 100)
 
 player = t.Turtle()
 player.shape('bob.gif')
-player.speed(1)
+player.speed(3)
 player.setheading(-90)
 player.penup()
 player.hideturtle()
@@ -34,7 +34,7 @@ player.hideturtle()
 Tile = t.Turtle()
 Tile.shape('tile.gif')
 Tile.color('black')
-Tile.speed(1)
+Tile.speed(3)
 Tile.setheading(180)
 Tile.penup()
 Tile.hideturtle()
@@ -47,7 +47,7 @@ tile4 = Tile.clone()
 bridge = t.Turtle()
 bridge.shape('square')
 bridge.color(RED)
-bridge.speed(1)
+bridge.speed(3)
 bridge.penup()
 bridge.hideturtle()
 
@@ -68,7 +68,7 @@ status_text.goto(0, -50)
 
 cloud = t.Turtle()
 cloud.shape('cloud.gif')
-cloud.speed(1)
+cloud.speed(3)
 cloud.penup()
 cloud.goto(300, 120)
 cloud.setheading(180)
@@ -81,7 +81,6 @@ hi_score = 0
 score = 0
 
 running = False
-gameover = False
 
 # Bridge Work
 def resetBridge():
@@ -96,9 +95,11 @@ def resetBridge():
 
 def drawBridge():
 	global bridge_height, bridge_length
+
 	# if game is not running, exit function
 	if not running:
 		return
+
 	start_pos = tile1.xcor() + 25, -52
 	bridge.shapesize(bridge_height, 0.3)
 	bridge.goto(start_pos)
@@ -126,7 +127,7 @@ def scrollBg(spd):
 		cloud2.setx(t.window_width() + 100)
 
 def playAnim(speed=0.5):
-	global gameover, hi_score, score
+	global running, hi_score, score
 	global tile1, tile2, tile3, tile4
 
 	# If game is not running, exit function
@@ -170,8 +171,14 @@ def playAnim(speed=0.5):
 		while player.ycor() >= -t.window_height()/2 - 20:
 			player.forward(speed*1.5)
 			win.update()
+		# Game Over
 		time.sleep(0.3)
-		gameover = True
+		running = False
+		title.shape('game_over.gif')
+		title.showturtle()
+		title.goto(0, 50)
+		displayStatus("Press 's' to restart")
+		win.update()
 
 # Placing new tile at random distance
 def placeTile(tile):
@@ -194,12 +201,11 @@ def displayStatus(msg=""):
 	status_text.write(msg, align='Center', font=('Arial', 20, 'bold'))
 
 def startGame():
-	global running, gameover, score
+	global running, score
 	global tile1, tile2, tile3, tile4
 
 	if not running:
 		running = True
-		gameover = False
 
 		# Initialize game screen
 		score = 0
@@ -218,17 +224,11 @@ def startGame():
 		tile2.showturtle()
 		tile3.showturtle()
 		tile4.showturtle()
-
-		while running:
-			win.update()
-			if gameover:
-				running = False
-				gameover = False
-				title.shape('game_over.gif')
-				title.showturtle()
-				title.goto(0, 50)
-				displayStatus("Press 's' to restart")
+		try:
+			while running:
 				win.update()
+		except:
+			t.bye()
 
 title.showturtle()
 displayStatus("Press 's' to start")

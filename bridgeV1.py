@@ -184,6 +184,7 @@ def playAnim(speed=0.5):
 			if moved_distance % 20 == 0:
 				walk()
 			win.update()
+		player.shape('bob.gif')
 		# fall to the ground
 		while player.ycor() >= -t.window_height()/2 - 20:
 			player.forward(speed*1.5)

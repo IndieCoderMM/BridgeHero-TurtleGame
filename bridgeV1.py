@@ -16,6 +16,7 @@ win.tracer(0)
 win.register_shape('game_title.gif')
 win.register_shape('game_over.gif')
 win.register_shape('bob.gif')
+win.register_shape('bob1.gif')
 win.register_shape('tile.gif')
 win.register_shape('cloud.gif')
 
@@ -58,10 +59,10 @@ Text.penup()
 Text.hideturtle()
 
 score_text = Text.clone()
-score_text.goto(-t.window_width()/2 + 20, t.window_height()/2 - 40)
+score_text.goto(-WIDTH/2 + 20, HEIGHT/2 - 40)
 
 hiscore_text = Text.clone()
-hiscore_text.goto(t.window_width()/2 - 120, t.window_height()/2 - 40)
+hiscore_text.goto(WIDTH/2 - 120, HEIGHT/2 - 40)
 
 status_text = Text.clone()
 status_text.goto(0, -50)
@@ -121,14 +122,24 @@ def scrollBg(spd):
 	# Parallax clouds
 	cloud.forward(spd*0.3)
 	cloud2.forward(spd*0.3)
-	if cloud.xcor() < -t.window_width()/2 - 50:
-		cloud.setx(t.window_width() + 100)
-	if cloud2.xcor() < - t.window_width()/2 - 50:
-		cloud2.setx(t.window_width() + 100)
+	if cloud.xcor() < -WIDTH/2 - 50:
+		cloud.setx(WIDTH + 100)
+	if cloud2.xcor() < -WIDTH/2 - 50:
+		cloud2.setx(WIDTH + 100)
+
+def walk():
+	global costume
+	if costume == 1:
+		costume = 0
+		player.shape('bob1.gif')
+	else:
+		costume = 1
+		player.shape('bob.gif')
 
 def playAnim(speed=0.5):
 	global running, hi_score, score
 	global tile1, tile2, tile3, tile4
+	global costume
 
 	# If game is not running, exit function
 	if not running:
@@ -138,6 +149,7 @@ def playAnim(speed=0.5):
 	moved_distance = 0
 	to_move = bridge_length/2 + player.distance(bridge)
 	crossable = tile1.distance(tile2) - tile_width < bridge_length < tile1.distance(tile2)
+	costume = 0
 
 	if crossable:
 		# If bridge length is perfect for crossing
@@ -145,7 +157,10 @@ def playAnim(speed=0.5):
 		while moved_distance <= to_move:
 			scrollBg(speed)
 			moved_distance += speed
+			if moved_distance % 20 == 0:
+				walk()
 			win.update()
+		player.shape('bob.gif')
 		# Changing scores
 		score += 1
 		if score > hi_score:
@@ -166,6 +181,8 @@ def playAnim(speed=0.5):
 		while moved_distance <= to_move + 10:
 			scrollBg(speed)
 			moved_distance += speed
+			if moved_distance % 20 == 0:
+				walk()
 			win.update()
 		# fall to the ground
 		while player.ycor() >= -t.window_height()/2 - 20:
@@ -228,7 +245,7 @@ def startGame():
 			while running:
 				win.update()
 		except:
-			t.bye()
+			win.bye()
 
 title.showturtle()
 displayStatus("Press 's' to start")

@@ -1,5 +1,4 @@
 # BridgeHero-TurtleGame
-Bridge hero game made with python turtle module.
 This is a beginner level project in which popular
 bridge hero mini-game is made using turtle graphics.
 Features:

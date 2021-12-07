@@ -127,6 +127,7 @@ def scrollBg(spd):
 	if cloud2.xcor() < -WIDTH/2 - 50:
 		cloud2.setx(WIDTH + 100)
 
+# Change sprite alternatively
 def walk():
 	global costume
 	if costume == 1:
@@ -190,7 +191,7 @@ def playAnim(speed=0.5):
 			player.forward(speed*1.5)
 			win.update()
 		# Game Over
-		time.sleep(0.3)
+		time.sleep(0.5)
 		running = False
 		title.shape('game_over.gif')
 		title.showturtle()

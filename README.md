@@ -11,7 +11,7 @@ In **Bridge Hero**, the players must use their building skills to construct brid
 
 ### Features
 
- - Endless gameplay
+ - Endless challenges
  - Random level generation
  - Simple, intuitive control
  - Fun, colorful design 
@@ -31,4 +31,4 @@ In **Bridge Hero**, the players must use their building skills to construct brid
 
 ### License
 
-This game sources are licensed under MIT. Check [LICENSE](LICENSE) for further details.
+This game sources are licensed under MIT. Check [LICENSE](LICENSE.md) for further details.

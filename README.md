@@ -6,7 +6,7 @@
 
 ### Description
 
-In **Bridge Hero**, the player must use their building skills to construct bridges and advance to the next platform. The objective is to carefully construct a bridge that will safely allow the player to cross over the gaps. 
+In **Bridge Hero**, the players must use their building skills to construct bridges and advance to the next platform. The objective is to carefully construct a bridge that will safely allow little *Bob* to cross over the gaps. 
 
 
 ### Features

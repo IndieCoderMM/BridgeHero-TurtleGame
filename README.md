@@ -1,4 +1,4 @@
-## Bridge Hero 
+# Bridge Hero 
 
 **Bridge Hero** is a simple arcade game created using [Turtle Graphics](https://docs.python.org/3/library/turtle.html). The code is written as clearly as possible for beginners to easily understand the concepts and apply in their own projects.
 
@@ -26,7 +26,7 @@ In **Bridge Hero**, the players must use their building skills to construct brid
 
 ### Screenshots
 
-<img src="screenshots/demo-gameplay.gif" alt="gameplay" width="500">
+<img src="screenshots/demo-gameplay.gif" alt="gameplay" width="400">
 
 
 ### License
